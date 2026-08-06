@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Job - Rozgar PK</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#F8FAFC;
+padding:15px;
+}
+
+.header{
+background:#1E3A5F;
+color:white;
+padding:20px;
+border-radius:15px;
+text-align:center;
+margin-bottom:15px;
+}
+
+.container{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:1px solid #CBD5E1;
+border-radius:10px;
+font-size:15px;
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+.update-btn{
+width:100%;
+padding:14px;
+background:#2563EB;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.back-btn{
+display:block;
+text-align:center;
+background:#1E3A5F;
+color:white;
+padding:12px;
+border-radius:10px;
+text-decoration:none;
+margin-bottom:15px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<a href="my-jobs.html" class="back-btn">
+⬅️ Back To My Jobs
+</a>
+
+<div class="header">
+<h1>📝 Edit Job</h1>
+<p>Update your job details below</p>
+</div>
+
+<div class="container" id="editForm" style="display:none;">
+
+<input type="text" id="jobTitle" placeholder="Job Title" required>
+
+<select id="jobCategory">
+<option value="">Select Category</option>
+<option value="Electrician">Electrician</option>
+<option value="Plumber">Plumber</option>
+<option value="Mason">Mason</option>
+<option value="Painter">Painter</option>
+<option value="Carpenter">Carpenter</option>
+<option value="Welder">Welder</option>
+<option value="AC Technician">AC Technician</option>
+<option value="Solar Technician">Solar Technician</option>
+<option value="Other">Other</option>
+</select>
+
+<input type="text" id="customCategory" placeholder="Write your custom skill category" style="display:none;">
+
+<input type="text" id="city" placeholder="City" required>
+<input type="number" id="budget" placeholder="Monthly pay (Rs)" required>
+<input type="tel" id="mobile" placeholder="Contact Number" required>
+<textarea id="description" placeholder="Describe Your Job Requirement" required></textarea>
+
+<button id="updateJobBtn" class="update-btn">
+💾 Save Changes
+</button>
+
+</div>
+
+<div id="loadingText" style="text-align:center; padding:50px; font-size:18px;">
+Loading Job Data...
+</div>
+
+<script type="module" src="edit-job.js"></script>
+
+</body>
+</html>

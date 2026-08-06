@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post New Job - Rozgar PK</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#F8FAFC;
+padding:15px;
+}
+
+.header{
+background:#1E3A5F;
+color:white;
+padding:20px;
+border-radius:15px;
+text-align:center;
+margin-bottom:15px;
+}
+
+.container{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:1px solid #CBD5E1;
+border-radius:10px;
+font-size:15px;
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+.post-btn{
+width:100%;
+padding:14px;
+background:#22C55E;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.back-btn{
+display:block;
+text-align:center;
+background:#1E3A5F;
+color:white;
+padding:12px;
+border-radius:10px;
+text-decoration:none;
+margin-bottom:15px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<a href="dashboard.html" class="back-btn">
+🏠 Back To Dashboard
+</a>
+
+<div class="header">
+<h1>💼 Post New Job</h1>
+<p>Hire Skilled Workers Easily</p>
+</div>
+
+<div class="container">
+
+<input
+type="text"
+id="jobTitle"
+placeholder="Job Title"
+required
+>
+
+<select id="jobCategory">
+<option value="">Select Category</option>
+<option value="Electrician">Electrician</option>
+<option value="Plumber">Plumber</option>
+<option value="Mason">Mason</option>
+<option value="Painter">Painter</option>
+<option value="Carpenter">Carpenter</option>
+<option value="Welder">Welder</option>
+<option value="AC Technician">AC Technician</option>
+<option value="Solar Technician">Solar Technician</option>
+<option value="Other">Other</option>
+</select>
+
+<input
+type="text"
+id="customCategory"
+placeholder="Write your custom skill category"
+style="display:none;"
+>
+
+<input
+type="text"
+id="city"
+placeholder="City"
+required
+>
+
+<input
+type="number"
+id="budget"
+placeholder="Monthly pay (Rs)"
+required
+>
+<input
+type="tel"
+id="mobile"
+placeholder="Contact Number"
+required
+>
+<textarea
+id="description"
+placeholder="Describe Your Job Requirement"
+required
+></textarea>
+
+<button id="postJobBtn" class="post-btn">
+🚀 Post Job
+</button>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyD13C2N3R6b-lgr7HXipEicQKr7AinbHPA",
+authDomain: "rozgarconnect-69054.firebaseapp.com",
+projectId: "rozgarconnect-69054",
+storageBucket: "rozgarconnect-69054.firebasestorage.app",
+messagingSenderId: "260861416467",
+appId: "1:260861416467:web:0e5ba645c9301a53b79be6",
+measurementId: "G-P9HZ0BM40W"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+const jobCategory = document.getElementById("jobCategory");
+const customCategory = document.getElementById("customCategory");
+const postJobBtn = document.getElementById("postJobBtn");
+
+let currentUser = null;
+
+// User Session check karein
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        currentUser = user;
+    } else {
+        window.location.href = "login.html"; // Agar login nahi hai to redirect karein
+    }
+});
+
+// Dropdown change hone par custom input show/hide karne ka logic
+jobCategory.addEventListener("change", () => {
+    if (jobCategory.value === "Other") {
+        customCategory.style.display = "block";
+        customCategory.setAttribute("required", "true");
+    } else {
+        customCategory.style.display = "none";
+        customCategory.removeAttribute("required");
+        customCategory.value = ""; // Reset value if hidden
+    }
+});
+
+// Submit/Post Job button click event
+postJobBtn.addEventListener("click", async () => {
+    if (!currentUser) {
+        alert("Please log in first.");
+        return;
+    }
+
+    const title = document.getElementById("jobTitle").value.trim();
+    const city = document.getElementById("city").value.trim();
+    const budget = document.getElementById("budget").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const description = document.getElementById("description").value.trim();
+    
+    // Category Validation: Agar 'Other' hai to custom category ki value uthayein
+    let category = jobCategory.value;
+    if (category === "Other") {
+        category = customCategory.value.trim();
+        if (!category) {
+            alert("Please specify your custom category!");
+            return;
+        }
+    }
+
+    if (!title || !category || !city || !budget || !mobile || !description) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    postJobBtn.disabled = true;
+    postJobBtn.innerText = "Posting...";
+
+    try {
+        // Logged-in user ka details "users" collection se nikalen
+        let ownerName = "Customer";
+        const q = query(collection(db, "users"), where("uid", "==", currentUser.uid));
+        const snap = await getDocs(q);
+        
+        snap.forEach(doc => {
+            ownerName = doc.data().name || "Customer";
+        });
+
+        // Job save karein
+        await addDoc(collection(db, "jobs"), {
+            uid: currentUser.uid,
+            ownerName: ownerName,
+            mobile: mobile,
+            title: title,
+            category: category, // Save dynamic value ("Other" text input)
+            city: city,
+            budget: budget,
+            description: description,
+            status: "Open",
+            createdAt: serverTimestamp()
+        });
+
+        alert("Job Posted Successfully! 🎉");
+        window.location.href = "dashboard.html";
+
+    } catch (error) {
+        console.error("Error posting job: ", error);
+        alert("Failed to post job. Please try again.");
+    } finally {
+        postJobBtn.disabled = false;
+        postJobBtn.innerText = "🚀 Post Job";
+    }
+});
+</script>
+
+</body>
+</html>

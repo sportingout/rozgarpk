@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Jobs</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#F8FAFC;
+padding:15px;
+}
+
+.header{
+background:#1E3A5F;
+color:white;
+padding:20px;
+border-radius:15px;
+text-align:center;
+margin-bottom:15px;
+}
+
+.job-card{
+background:white;
+padding:15px;
+margin-bottom:15px;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.btns{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.delete-btn{
+flex:1;
+background:#DC2626;
+color:white;
+padding:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.close-btn{
+flex:1;
+background:#F59E0B;
+color:white;
+padding:10px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.back-btn{
+display:block;
+background:#1E3A5F;
+color:white;
+padding:12px;
+text-align:center;
+border-radius:10px;
+text-decoration:none;
+margin-bottom:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="dashboard.html" class="back-btn">
+🏠 Dashboard
+</a>
+
+<div class="header">
+<h1>📋 My Jobs</h1>
+</div>
+
+<div id="jobsContainer">
+Loading...
+</div>
+
+<script type="module" src="my-jobs.js"></script>
+
+</body>
+</html>

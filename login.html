@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rozgar Connect Login</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+padding:20px;
+}
+.container{
+max-width:400px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+h2{
+text-align:center;
+color:#0d6efd;
+}
+input{
+width:100%;
+padding:10px;
+margin:8px 0;
+box-sizing:border-box;
+}
+button{
+width:100%;
+background:#0d6efd;
+color:white;
+border:none;
+padding:12px;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
+.register-btn{
+display:block;
+width:100%;
+text-align:center;
+margin-top:10px;
+padding:12px;
+background:#1E3A5F;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+transition:.3s;
+}
+
+.register-btn:hover{
+opacity:.9;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h2>Rozgar Connect Login</h2>
+
+<input type="email" id="email" placeholder="Email Address">
+
+<input type="password" id="password" placeholder="Password">
+<div style="margin:10px 0;">
+  <input
+    type="checkbox"
+    id="rememberMe"
+    style="width:auto;margin-right:8px;"
+  >
+  <label for="rememberMe">Remember Me</label>
+</div>
+<button id="loginBtn">Login</button>
+
+<a href="register.html" class="register-btn">
+Create New Account
+</a>
+</div>
+
+<script type="module" src="login.js"></script>
+
+</body>
+</html>

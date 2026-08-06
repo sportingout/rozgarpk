@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile - Rozgar PK</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#F8FAFC;
+padding:15px;
+color:#1E293B;
+}
+
+.header{
+background:#1E3A5F;
+color:white;
+padding:20px;
+border-radius:15px;
+text-align:center;
+margin-bottom:15px;
+}
+
+.header h1{
+font-size:28px;
+margin-bottom:5px;
+}
+
+.header p{
+opacity:.9;
+}
+
+.dashboard-btn{
+display:block;
+width:100%;
+text-align:center;
+background:#1E3A5F;
+color:white;
+padding:12px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.container{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.05);
+}
+
+input,
+select{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border:1px solid #CBD5E1;
+border-radius:10px;
+font-size:15px;
+}
+
+input:focus,
+select:focus{
+outline:none;
+border-color:#1E3A5F;
+}
+
+.save-btn{
+width:100%;
+padding:12px;
+background:#22C55E;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:5px;
+}
+
+.logout-btn{
+width:100%;
+padding:12px;
+background:#DC2626;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>👤 My Profile</h1>
+<p>Manage Your Profile Information</p>
+</div>
+
+<a href="dashboard.html" class="dashboard-btn">
+🏠 Back To Dashboard
+</a>
+
+<div class="container">
+
+<input
+type="text"
+id="name"
+placeholder="Full Name"
+>
+
+<input
+type="tel"
+id="mobile"
+placeholder="Mobile Number"
+>
+
+<input
+type="tel"
+id="whatsapp"
+placeholder="WhatsApp Number"
+>
+
+<input
+type="text"
+id="city"
+placeholder="City"
+>
+
+<input
+type="text"
+id="skill"
+placeholder="Skill"
+>
+
+<input
+type="number"
+id="wage"
+placeholder="Daily Wage"
+>
+
+<input
+type="text"
+id="experience"
+placeholder="Experience"
+>
+
+<select id="availability">
+<option value="Available">🟢 Available</option>
+<option value="Busy">🟡 Busy</option>
+<option value="On Leave">🔴 On Leave</option>
+</select>
+
+<button
+id="saveBtn"
+class="save-btn">
+💾 Update Profile
+</button>
+
+<button
+id="logoutBtn"
+class="logout-btn">
+🚪 Logout
+</button>
+
+</div>
+
+<script type="module" src="profile.js"></script>
+
+</body>
+</html

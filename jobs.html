@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse Jobs - Rozgar PK</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#F8FAFC;
+padding:15px;
+}
+
+.header{
+background:#1E3A5F;
+color:white;
+padding:20px;
+border-radius:15px;
+text-align:center;
+margin-bottom:15px;
+}
+
+.back-btn{
+display:block;
+text-align:center;
+background:#1E3A5F;
+color:white;
+padding:12px;
+border-radius:10px;
+text-decoration:none;
+margin-bottom:15px;
+font-weight:bold;
+}
+
+.search-box{
+background:white;
+padding:15px;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+.search-box input{
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border:1px solid #CBD5E1;
+border-radius:10px;
+}
+
+.job-card{
+background:white;
+padding:18px;
+border-radius:15px;
+margin-bottom:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.job-card h3{
+color:#1E3A5F;
+margin-bottom:10px;
+}
+
+.job-card p{
+margin:6px 0;
+}
+
+.status{
+color:green;
+font-weight:bold;
+}
+
+.loading{
+text-align:center;
+padding:20px;
+}
+</style>
+</head>
+<title>Jobs in Pakistan - Rozgar PK</title>
+
+<meta name="description"
+content="Browse jobs posted by customers and find work opportunities across Pakistan.">
+<body>
+
+<a href="dashboard.html" class="back-btn">
+🏠 Back To Dashboard
+</a>
+
+<div class="header">
+<h1>💼 Available Jobs</h1>
+<p>Find Work Near You</p>
+</div>
+
+<div class="search-box">
+<input
+type="text"
+id="searchCategory"
+placeholder="Search Category"
+>
+
+<input
+type="text"
+id="searchCity"
+placeholder="Search City"
+>
+</div>
+
+<div id="jobsContainer" class="loading">
+Loading Jobs...
+</div>
+
+<script type="module" src="jobs.js"></script>
+<div style="display:none;">
+
+<h2>Jobs for Skilled Workers in Pakistan</h2>
+
+<p>
+Find jobs for Tile Mason, Electrician, Plumber,
+Painter, Carpenter, Welder and other skilled workers.
+</p>
+
+<p>
+Browse job opportunities in Multan, Lahore, Karachi,
+Islamabad, Faisalabad and other cities.
+</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rozgar Connect Admin Panel</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#F8FAFC;
+padding:20px;
+color:#1E293B;
+}
+
+.header{
+background:#1E3A5F;
+color:white;
+padding:20px;
+border-radius:15px;
+text-align:center;
+margin-bottom:20px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.card h2{
+font-size:30px;
+color:#1E3A5F;
+margin-bottom:10px;
+}
+
+.section{
+background:white;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.worker{
+padding:15px;
+border-bottom:1px solid #E2E8F0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.worker:last-child{
+border-bottom:none;
+}
+
+.worker-info{
+flex:1;
+min-width:200px;
+}
+
+.action-btns{
+display:flex;
+gap:8px;
+}
+
+.btn{
+display:inline-block;
+background:#1E3A5F;
+color:white;
+padding:10px 15px;
+border-radius:8px;
+text-decoration:none;
+margin-top:10px;
+font-size:14px;
+font-weight:bold;
+cursor:pointer;
+border:none;
+}
+
+.btn-verify{
+background:#22C55E;
+}
+
+.btn-delete{
+background:#EF4444;
+}
+
+.btn-unverify{
+background:#F59E0B;
+}
+
+.badge-verified {
+background: #DCFCE7;
+color: #15803D;
+padding: 2px 6px;
+border-radius: 4px;
+font-size: 11px;
+font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>🔑 Rozgar Connect Admin Panel</h1>
+<p>Manage Workers & Jobs</p>
+</div>
+
+<div class="stats">
+<div class="card">
+<h2 id="totalWorkers">0</h2>
+<p>Total Workers</p>
+</div>
+
+<div class="card">
+<h2 id="totalJobs">0</h2>
+<p>Total Jobs</p>
+</div>
+</div>
+
+<div class="section">
+<h2>Registered Workers</h2>
+<div id="workersList">
+Loading...
+</div>
+</div>
+
+<div class="section">
+<h2>Quick Links</h2>
+<a href="dashboard.html" class="btn">Workers Dashboard</a>
+<a href="jobs.html" class="btn">Jobs List</a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { 
+  getFirestore, 
+  collection, 
+  getDocs, 
+  doc, 
+  updateDoc, 
+  deleteDoc 
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+import { 
+  getAuth, 
+  onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD13C2N3R6b-lgr7HXipEicQKr7AinbHPA",
+  authDomain: "rozgarconnect-69054.firebaseapp.com",
+  projectId: "rozgarconnect-69054",
+  storageBucket: "rozgarconnect-69054.firebasestorage.app",
+  messagingSenderId: "260861416467",
+  appId: "1:260861416467:web:0e5ba645c9301a53b79be6",
+  measurementId: "G-P9HZ0BM40W"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+// Auth state listener: user status check karne ke liye
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    loadAdminData();
+  } else {
+    window.location.href = "login.html";
+  }
+});
+
+async function loadAdminData(){
+  try{
+    const usersSnapshot = await getDocs(collection(db,"users"));
+    const jobsSnapshot = await getDocs(collection(db,"jobs"));
+    
+    let workersCount = 0;
+    const workersList = document.getElementById("workersList");
+    workersList.innerHTML = "";
+
+    usersSnapshot.forEach((docRef)=>{
+      const user = docRef.data();
+      const userId = docRef.id;
+
+      if(user.role === "worker"){
+        workersCount++;
+
+        const isVerified = user.isVerified === true;
+        const verifyBadge = isVerified ? '<span class="badge-verified">✅ Verified</span>' : '';
+        
+        // Button actions logic (Verify/Unverify option)
+        const verifyActionBtn = isVerified 
+          ? `<button class="btn btn-unverify" onclick="toggleVerification('${userId}', false)">⚠️ Unverify</button>`
+          : `<button class="btn btn-verify" onclick="toggleVerification('${userId}', true)">✅ Verify</button>`;
+
+        workersList.innerHTML += `
+          <div class="worker" id="worker-${userId}">
+            <div class="worker-info">
+              <b>${user.name || "Worker"}</b> ${verifyBadge}<br>
+              📍 ${user.city || "City Not Added"}<br>
+              🛠 ${user.skill || "Skill Not Added"}<br>
+              📞 ${user.mobile || ""}
+            </div>
+            <div class="action-btns">
+              ${verifyActionBtn}
+              <button class="btn btn-delete" onclick="deleteWorker('${userId}')">🗑️ Delete</button>
+            </div>
+          </div>
+        `;
+      }
+    });
+
+    document.getElementById("totalWorkers").innerText = workersCount;
+    document.getElementById("totalJobs").innerText = jobsSnapshot.size;
+
+    if(workersCount === 0){
+      workersList.innerHTML = "No workers found";
+    }
+
+  }catch(error){
+    console.error(error);
+    document.getElementById("workersList").innerHTML = "Error loading data";
+  }
+}
+
+// 🟢 Worker Verification Toggle function (Admin controls)
+window.toggleVerification = async function(userId, status) {
+  try {
+    const userRef = doc(db, "users", userId);
+    await updateDoc(userRef, {
+      isVerified: status
+    });
+    alert(status ? "Worker Verified successfully! 🎉" : "Worker Unverified.");
+    loadAdminData(); // Refresh UI list
+  } catch (error) {
+    console.error("Verification toggle failed:", error);
+    alert("Database update failed.");
+  }
+};
+
+// 🗑️ Worker Profile Delete function
+window.deleteWorker = async function(userId) {
+  if (confirm("Are you sure you want to permanently delete this worker profile?")) {
+    try {
+      const userRef = doc(db, "users", userId);
+      await deleteDoc(userRef);
+      alert("Worker profile deleted.");
+      loadAdminData(); // Refresh UI list
+    } catch (error) {
+      console.error("Delete worker failed:", error);
+      alert("Failed to delete profile.");
+    }
+  }
+};
+</script>
+
+</body>
+</html>
