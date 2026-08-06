@@ -14,25 +14,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
 /* Firebase Config */
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "rozgarconnect-69054.firebaseapp.com",
-  projectId: "rozgarconnect-69054",
-  storageBucket: "rozgarconnect-69054.firebasestorage.app",
-  messagingSenderId: "260861416467",
-  appId: "1:260861416467:web:0e5ba645c9301a53b79be6"
+const firebaseConfig = { apiKey: "AIzaSyD13C2N3R6b-lgr7HXipEicQKr7AinbHPA", authDomain: "rozgarconnect-69054.firebaseapp.com", projectId: "rozgarconnect-69054", storageBucket: "rozgarconnect-69054.firebasestorage.app", messagingSenderId: "260861416467", appId: "1:260861416467:web:0e5ba645c9301a53b79be6"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-
-let currentUser = null;
-
-/* Current User */
-onAuthStateChanged(auth, (user) => {
-  currentUser = user;
-});
 
 const jobsContainer = document.getElementById("jobsContainer");
 

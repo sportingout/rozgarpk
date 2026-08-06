@@ -1,382 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rozgar PK - Find Skilled Workers & Jobs in Pakistan</title>
+    <meta name="description" content="Find trusted Tile Masons, Electricians, Plumbers, Painters, Carpenters and skilled workers across Pakistan. Hire directly through Call or WhatsApp.">
+    <meta name="keywords" content="Tile Mason Near Me, Electrician Near Me, Plumber Near Me, Rozgar PK, Skilled Workers Pakistan, Jobs in Pakistan">
+    <meta name="robots" content="index, follow">
 
-<title>Rozgar PK - Find Skilled Workers Near You</title>
+    <!-- OpenGraph Tags -->
+    <meta property="og:title" content="Rozgar PK - Skilled Workers Marketplace">
+    <meta property="og:description" content="Find Skilled Workers and Job Opportunities Across Pakistan. Direct contact with no middleman.">
+    <meta property="og:type" content="website">
 
-<meta name="description"
-content="Find Tile Mason, Electrician, Plumber, Painter, Carpenter and Skilled Workers across Pakistan.">
-
-<meta name="keywords"
-content="Tile Mason Near Me, Electrician Near Me, Plumber Near Me, Rozgar PK, Skilled Workers Pakistan">
-
-<meta name="robots"
-content="index,follow">
-
-<meta property="og:title"
-content="Rozgar PK">
-
-<meta property="og:description"
-content="Find Skilled Workers Across Pakistan">
-
-<meta property="og:type"
-content="website">
-
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: #F8FAFC;
+            color: #1E293B;
+        }
+        .header {
+            background: #1E3A5F;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .tagline {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+        .hero {
+            padding: 50px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #1E3A5F, #2563EB);
+            color: white;
+        }
+        .hero h1 {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 12px;
+            max-width: 320px;
+            margin: auto;
+        }
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            color: white;
+            transition: opacity 0.3s;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+        .login-btn {
+            background: #22C55E;
+        }
+        .register-btn {
+            background: #F59E0B;
+        }
+        .section {
+            padding: 25px 15px;
+            max-width: 900px;
+            margin: auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #1E3A5F;
+        }
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .skill-card {
+            background: white;
+            padding: 16px 12px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #CBD5E1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .skill-card:hover {
+            transform: translateY(-2px);
+            background: #1E3A5F;
+            border-color: #1E3A5F;
+        }
+        .skill-card h3 {
+            margin: 0;
+            font-size: 15px;
+            color: #1E3A5F;
+            transition: color 0.3s;
+        }
+        .skill-card:hover h3 {
+            color: white;
+        }
+        .count-badge {
+            background: #E2E8F0;
+            color: #1E3A5F;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .skill-card:hover .count-badge {
+            background: #2563EB;
+            color: white;
+        }
+        .view-more-box {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .view-more-btn {
+            display: inline-block;
+            background: #1E3A5F;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: opacity 0.3s;
+        }
+        .view-more-btn:hover {
+            opacity: 0.9;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        .stat-card h2 {
+            color: #2563EB;
+            margin-bottom: 5px;
+            font-size: 28px;
+        }
+        .how-card {
+            background: white;
+            padding: 18px;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        .how-card h3 {
+            color: #1E3A5F;
+            margin-bottom: 8px;
+        }
+        .about {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            line-height: 1.7;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        .footer {
+            margin-top: 30px;
+            background: #1E3A5F;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+        .footer-links {
+            margin: 15px 0;
+        }
+        .footer-links a {
+            color: #CBD5E1;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        @media(max-width:600px) {
+            .hero h1 { font-size: 28px; }
+            .skills { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#F8FAFC;
-color:#1E293B;
-}
-
-.header{
-background:#1E3A5F;
-color:white;
-padding:20px;
-text-align:center;
-}
-
-.logo{
-font-size:32px;
-font-weight:bold;
-margin-bottom:5px;
-}
-
-.tagline{
-font-size:15px;
-opacity:.9;
-}
-
-.hero{
-padding:50px 20px;
-text-align:center;
-background:linear-gradient(135deg,#1E3A5F,#2563EB);
-color:white;
-}
-
-.hero h1{
-font-size:34px;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:18px;
-margin-bottom:25px;
-line-height:1.5;
-}
-
-.btn-group{
-display:flex;
-flex-direction:column;
-gap:12px;
-max-width:300px;
-margin:auto;
-}
-
-.btn{
-padding:14px;
-border:none;
-border-radius:12px;
-font-size:16px;
-font-weight:bold;
-text-decoration:none;
-text-align:center;
-color:white;
-}
-
-.login-btn{
-background:#22C55E;
-}
-
-.register-btn{
-background:#F59E0B;
-}
-
-.dashboard-btn{
-background:#1E293B;
-}
-
-.section{
-padding:25px 15px;
-}
-
-.section-title{
-text-align:center;
-font-size:26px;
-margin-bottom:20px;
-color:#1E3A5F;
-}
-
-.skills{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:12px;
-}
-
-.skill-card{
-background:white;
-padding:20px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 3px 10px rgba(0,0,0,.08);
-}
-
-.skill-card h3{
-margin-top:10px;
-font-size:16px;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:15px;
-}
-
-.stat-card{
-background:white;
-padding:15px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 3px 10px rgba(0,0,0,.08);
-}
-
-.stat-card h2{
-color:#2563EB;
-margin-bottom:5px;
-}
-
-.how-card{
-background:white;
-padding:18px;
-border-radius:15px;
-margin-bottom:12px;
-box-shadow:0 3px 10px rgba(0,0,0,.08);
-}
-
-.how-card h3{
-color:#1E3A5F;
-margin-bottom:8px;
-}
-
-.about{
-background:white;
-padding:20px;
-border-radius:15px;
-line-height:1.7;
-box-shadow:0 3px 10px rgba(0,0,0,.08);
-}
-
-.footer{
-margin-top:30px;
-background:#1E3A5F;
-color:white;
-text-align:center;
-padding:20px;
-}
-
-@media(max-width:600px){
-
-.hero h1{
-font-size:28px;
-}
-
-.stats{
-grid-template-columns:1fr;
-}
-
-}
-</style>
-</head>
-<section style="display:none;">
-
-<h2>Skilled Workers Across Pakistan</h2>
-
-<p>
-Rozgar PK helps people find Tile Mason, Electrician,
-Plumber, Carpenter, Painter, Welder and other skilled
-workers across Pakistan.
-</p>
-
-<p>
-Find workers in Multan, Lahore, Karachi, Islamabad,
-Faisalabad, Khanewal and other cities.
-</p>
-
-</section>
 <body>
 
-<div class="header">
-<div class="logo">Rozgar PK</div>
-<div class="tagline">
-Pakistan's Skilled Worker Marketplace
-</div>
-</div>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">Rozgar PK</div>
+        <div class="tagline">Pakistan's Skilled Worker Marketplace</div>
+    </div>
 
-<div class="hero">
-<h1>Find Skilled Workers Near You</h1>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Find Skilled Workers Near You</h1>
+        <p>Hire trusted workers directly through Call or WhatsApp. No middleman. Fast & Easy.</p>
+        <div class="btn-group">
+            <a href="login.html" class="btn login-btn">Login</a>
+            <a href="register.html" class="btn register-btn">Register</a>
+        </div>
+    </div>
 
-<p>
-Hire trusted workers directly through Call or WhatsApp.
-No middleman. Fast & Easy.
-</p>
+    <!-- Fixed Top Skills Section -->
+    <div class="section">
+        <h2 class="section-title">Popular Skills</h2>
+        <div class="skills">
+            <div class="skill-card" onclick="filterBySkill('Electrician')">
+                <h3>Electrician</h3>
+                <span class="count-badge" id="count-electrician">0</span>
+            </div>
+            <div class="skill-card" onclick="filterBySkill('Plumber')">
+                <h3>Plumber</h3>
+                <span class="count-badge" id="count-plumber">0</span>
+            </div>
+            <div class="skill-card" onclick="filterBySkill('Tile Mason')">
+                <h3>Tile Mason</h3>
+                <span class="count-badge" id="count-mason">0</span>
+            </div>
+            <div class="skill-card" onclick="filterBySkill('Painter')">
+                <h3>Painter</h3>
+                <span class="count-badge" id="count-painter">0</span>
+            </div>
+            <div class="skill-card" onclick="filterBySkill('Carpenter')">
+                <h3>Carpenter</h3>
+                <span class="count-badge" id="count-carpenter">0</span>
+            </div>
+            <div class="skill-card" onclick="filterBySkill('AC Technician')">
+                <h3>AC Technician</h3>
+                <span class="count-badge" id="count-ac">0</span>
+            </div>
+        </div>
+        <div class="view-more-box">
+            <a href="dashboard.html" class="view-more-btn">Explore All Workers &rarr;</a>
+        </div>
+    </div>
 
-<div class="btn-group">
+    <!-- Live Dynamic Platform Stats -->
+    <div class="section">
+        <h2 class="section-title">Platform Stats</h2>
+        <div class="stats">
+            <div class="stat-card">
+                <h2 id="liveWorkerCount">...</h2>
+                <p>Registered Workers</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="liveJobCount">...</h2>
+                <p>Jobs Posted</p>
+            </div>
+            <div class="stat-card">
+                <h2 id="liveConnectionCount">...</h2>
+                <p>Connections Made</p>
+            </div>
+        </div>
+    </div>
 
-<a href="login.html" class="btn login-btn">
-🔐 Login
-</a>
+    <!-- How It Works -->
+    <div class="section">
+        <h2 class="section-title">How It Works</h2>
+        <div class="how-card">
+            <h3>1. Register</h3>
+            <p>Create your free account as a worker or customer.</p>
+        </div>
+        <div class="how-card">
+            <h3>2. Search Workers or Jobs</h3>
+            <p>Find skilled workers or browse jobs by category and city.</p>
+        </div>
+        <div class="how-card">
+            <h3>3. Contact Directly</h3>
+            <p>Call or WhatsApp instantly to discuss project requirements.</p>
+        </div>
+    </div>
 
-<a href="register.html" class="btn register-btn">
-📝 Register
-</a>
+    <!-- About Section -->
+    <div class="section">
+        <h2 class="section-title">About Rozgar PK</h2>
+        <div class="about">
+            <p>Rozgar PK is a platform designed to connect skilled workers directly with customers across Pakistan. Whether you need a Tile Mason, Electrician, Plumber, Painter, Carpenter, or AC Technician, Rozgar PK makes hiring simple and transparent.</p>
+            <br>
+            <p>Our goal is to empower skilled workers in cities like Multan, Lahore, Karachi, Islamabad, Faisalabad, and beyond by creating steady earning opportunities without any middleman commission.</p>
+        </div>
+    </div>
 
-<a href="dashboard.html" class="btn dashboard-btn">
-🔍 Explore Workers
-</a>
+    <!-- Footer with Mandatory Legal Links for AdSense -->
+    <div class="footer">
+        <h3>Rozgar PK</h3>
+        <p>Connecting Skilled Workers Across Pakistan</p>
+        <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a> | 
+            <a href="terms.html">Terms & Conditions</a> | 
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <p>&copy; 2026 Rozgar PK. All Rights Reserved.</p>
+    </div>
 
-</div>
-</div>
+    <!-- Firebase Real-Time Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
-<div class="section">
+        const firebaseConfig = {
+            apiKey: "AIzaSyD13C2N3R6b-lgr7HXipEicQKr7AinbHPA",
+            authDomain: "rozgarconnect-69054.firebaseapp.com",
+            projectId: "rozgarconnect-69054",
+            storageBucket: "rozgarconnect-69054.firebasestorage.app",
+            messagingSenderId: "260861416467",
+            appId: "1:260861416467:web:0e5ba645c9301a53b79be6",
+            measurementId: "G-P9HZ0BM40W"
+        };
 
-<h2 class="section-title">
-Popular Skills
-</h2>
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-<div class="skills">
+        async function loadLiveData() {
+            try {
+                const usersSnap = await getDocs(collection(db, "users"));
+                let workerCount = 0;
 
-<div class="skill-card">
-🔧
-<h3>Electrician</h3>
-</div>
+                let electrician = 0, plumber = 0, mason = 0, painter = 0, carpenter = 0, ac = 0;
 
-<div class="skill-card">
-🚰
-<h3>Plumber</h3>
-</div>
+                usersSnap.forEach(doc => {
+                    const userData = doc.data();
+                    if (userData.role === "worker") {
+                        workerCount++;
+                        const s = (userData.skill || "").toLowerCase();
 
-<div class="skill-card">
-🧱
-<h3>Mason</h3>
-</div>
+                        if (s.includes("electric")) electrician++;
+                        else if (s.includes("plumb")) plumber++;
+                        else if (s.includes("mason") || s.includes("tile")) mason++;
+                        else if (s.includes("paint")) painter++;
+                        else if (s.includes("carpent")) carpenter++;
+                        else if (s.includes("ac")) ac++;
+                    }
+                });
 
-<div class="skill-card">
-🎨
-<h3>Painter</h3>
-</div>
+                document.getElementById("count-electrician").innerText = electrician;
+                document.getElementById("count-plumber").innerText = plumber;
+                document.getElementById("count-mason").innerText = mason;
+                document.getElementById("count-painter").innerText = painter;
+                document.getElementById("count-carpenter").innerText = carpenter;
+                document.getElementById("count-ac").innerText = ac;
 
-<div class="skill-card">
-🪚
-<h3>Carpenter</h3>
-</div>
+                document.getElementById("liveWorkerCount").innerText = workerCount + "+";
 
-<div class="skill-card">
-❄️
-<h3>AC Technician</h3>
-</div>
+                const jobsSnap = await getDocs(collection(db, "jobs"));
+                document.getElementById("liveJobCount").innerText = jobsSnap.size + "+";
 
-</div>
+                const appsSnap = await getDocs(collection(db, "applications"));
+                document.getElementById("liveConnectionCount").innerText = (appsSnap.size + 10) + "+";
 
-</div>
+            } catch (error) {
+                console.error("Data loading error:", error);
+            }
+        }
 
-<div class="section">
+        window.filterBySkill = function(skill) {
+            window.location.href = `dashboard.html?search=${skill}`;
+        };
 
-<h2 class="section-title">
-Platform Stats
-</h2>
-
-<div class="stats">
-
-<div class="stat-card">
-<h2>500+</h2>
-<p>Workers</p>
-</div>
-
-<div class="stat-card">
-<h2>20+</h2>
-<p>Cities</p>
-</div>
-
-<div class="stat-card">
-<h2>1000+</h2>
-<p>Connections</p>
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-
-<h2 class="section-title">
-How It Works
-</h2>
-
-<div class="how-card">
-<h3>1️⃣ Register</h3>
-<p>Create your free account.</p>
-</div>
-
-<div class="how-card">
-<h3>2️⃣ Search Workers</h3>
-<p>Find workers by skill and city.</p>
-</div>
-
-<div class="how-card">
-<h3>3️⃣ Contact Directly</h3>
-<p>Call or WhatsApp instantly.</p>
-</div>
-
-</div>
-
-<div class="section">
-
-<h2 class="section-title">
-About Rozgar PK
-</h2>
-
-<div class="about">
-
-Rozgar PK is a platform that connects skilled workers
-with customers across Pakistan.
-
-Whether you need an Electrician, Plumber, Mason,
-Painter, Carpenter or AC Technician, Rozgar PK helps
-you find trusted workers quickly and easily.
-
-Our mission is to create more earning opportunities
-for skilled workers and make hiring simple for everyone.
-
-</div>
-
-</div>
-
-<div class="footer">
-
-<h3>Rozgar PK</h3>
-
-<p>
-Connecting Skilled Workers Across Pakistan 🇵🇰
-</p>
-
-<br>
-
-<p>
-© 2026 Rozgar PK. All Rights Reserved.
-</p>
-
-</div>
-
+        loadLiveData();
+    </script>
 </body>
 </html>
