@@ -1,135 +1,412 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Browse Jobs - Rozgar PK</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Available Jobs - Rozgar Connect</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #f4f6f9;
+      padding: 16px;
+      color: #333;
+    }
+    .btn-dashboard {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px;
+      background-color: #1a365d;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .header-card {
+      background-color: #1a365d;
+      color: white;
+      text-align: center;
+      padding: 24px 16px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+    .header-card h1 {
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .header-card p {
+      font-size: 14px;
+      opacity: 0.85;
+    }
+    .search-container {
+      background: white;
+      padding: 16px;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    .input-field {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 14px;
+      margin-bottom: 12px;
+      outline: none;
+    }
+    .input-field:last-child {
+      margin-bottom: 0;
+    }
+    .input-field:focus {
+      border-color: #1a365d;
+    }
+    
+    .jobs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .job-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      border: 1px solid #e2e8f0;
+    }
+    .job-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 6px;
+    }
+    .job-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .badge {
+      background-color: #e2e8f0;
+      color: #2d3748;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-salary {
+      background-color: #e6fffa;
+      color: #234e52;
+    }
+    .job-poster-info {
+      background-color: #f8fafc;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .contact-row {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-action {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-apply {
+      background-color: #2b6cb0;
+      color: white;
+      width: 100%;
+    }
+    .btn-call {
+      background-color: #25d366;
+      color: white;
+    }
+    .btn-phone {
+      background-color: #1a365d;
+      color: white;
+    }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#F8FAFC;
-padding:15px;
-}
-
-.header{
-background:#1E3A5F;
-color:white;
-padding:20px;
-border-radius:15px;
-text-align:center;
-margin-bottom:15px;
-}
-
-.back-btn{
-display:block;
-text-align:center;
-background:#1E3A5F;
-color:white;
-padding:12px;
-border-radius:10px;
-text-decoration:none;
-margin-bottom:15px;
-font-weight:bold;
-}
-
-.search-box{
-background:white;
-padding:15px;
-border-radius:15px;
-margin-bottom:15px;
-}
-
-.search-box input{
-width:100%;
-padding:12px;
-margin-bottom:10px;
-border:1px solid #CBD5E1;
-border-radius:10px;
-}
-
-.job-card{
-background:white;
-padding:18px;
-border-radius:15px;
-margin-bottom:15px;
-box-shadow:0 3px 10px rgba(0,0,0,.08);
-}
-
-.job-card h3{
-color:#1E3A5F;
-margin-bottom:10px;
-}
-
-.job-card p{
-margin:6px 0;
-}
-
-.status{
-color:green;
-font-weight:bold;
-}
-
-.loading{
-text-align:center;
-padding:20px;
-}
-</style>
+    /* Apply Job Modal Styles */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .modal-content h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: #1a365d;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 12px;
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .btn-submit:disabled {
+      background-color: #a0aec0;
+      cursor: not-allowed;
+    }
+    .btn-cancel {
+      width: 100%;
+      padding: 10px;
+      background-color: #e2e8f0;
+      color: #4a5568;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 6px;
+    }
+  </style>
 </head>
-<title>Jobs in Pakistan - Rozgar PK</title>
-
-<meta name="description"
-content="Browse jobs posted by customers and find work opportunities across Pakistan.">
 <body>
 
-<a href="dashboard.html" class="back-btn">
-🏠 Back To Dashboard
-</a>
+  <!-- Navigation -->
+  <a href="/dashboard.html" class="btn-dashboard">
+    🏠 Back To Dashboard
+  </a>
 
-<div class="header">
-<h1>💼 Available Jobs</h1>
-<p>Find Work Near You</p>
-</div>
+  <!-- Header Section -->
+  <div class="header-card">
+    <h1>💼 Available Jobs</h1>
+    <p>Find Work Near You</p>
+  </div>
 
-<div class="search-box">
-<input
-type="text"
-id="searchCategory"
-placeholder="Search Category"
->
+  <!-- Search Inputs -->
+  <div class="search-container">
+    <input type="text" id="categoryInput" class="input-field" placeholder="Search Category (e.g. Tile Work, Plumber)" />
+    <input type="text" id="cityInput" class="input-field" placeholder="Search City" />
+  </div>
 
-<input
-type="text"
-id="searchCity"
-placeholder="Search City"
->
-</div>
+  <!-- Jobs List Target -->
+  <div id="jobsList" class="jobs-list"></div>
 
-<div id="jobsContainer" class="loading">
-Loading Jobs...
-</div>
+  <!-- Apply Job Popup Modal -->
+  <div id="applyModal" class="modal-backdrop">
+    <div class="modal-content">
+      <h2 id="modalJobTitle">Apply for Job</h2>
+      <form id="applyForm">
+        <input type="hidden" id="modalJobId" />
+        <input type="text" id="applicantName" class="input-field" placeholder="Aapka Poora Naam" required />
+        <input type="tel" id="applicantPhone" class="input-field" placeholder="Cell Number (e.g. 03001234567)" required />
+        <textarea id="applicantNotes" class="input-field" rows="3" placeholder="Tajurba / Skils (Optional)" style="resize:none;"></textarea>
+        
+        <button type="submit" class="btn-submit">Submit Application</button>
+        <button type="button" class="btn-cancel" id="btnCloseModal">Cancel</button>
+      </form>
+    </div>
+  </div>
 
-<script type="module" src="jobs.js"></script>
-<div style="display:none;">
+  <!-- Firebase Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-<h2>Jobs for Skilled Workers in Pakistan</h2>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD13C2N3R6b-lgr7HXipEicQKr7AinbHPA",
+      authDomain: "rozgarconnect-69054.firebaseapp.com",
+      projectId: "rozgarconnect-69054",
+      storageBucket: "rozgarconnect-69054.firebasestorage.app",
+      messagingSenderId: "260861416467",
+      appId: "1:260861416467:web:0e5ba645c9301a53b79be6"
+    };
 
-<p>
-Find jobs for Tile Mason, Electrician, Plumber,
-Painter, Carpenter, Welder and other skilled workers.
-</p>
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-<p>
-Browse job opportunities in Multan, Lahore, Karachi,
-Islamabad, Faisalabad and other cities.
-</p>
+    let allJobs = [];
 
-</div>
+    async function fetchJobs() {
+      const container = document.getElementById("jobsList");
+      container.innerHTML = "<p style='text-align:center;'>Loading jobs...</p>";
+
+      try {
+        const querySnapshot = await getDocs(collection(db, "jobs"));
+        allJobs = [];
+        
+        querySnapshot.forEach((doc) => {
+          allJobs.push({ id: doc.id, ...doc.data() });
+        });
+
+        renderJobs(allJobs);
+      } catch (error) {
+        console.error("Error loading jobs:", error);
+        container.innerHTML = "<p style='text-align:center; color:red;'>Failed to load jobs.</p>";
+      }
+    }
+
+    function renderJobs(jobs) {
+      const container = document.getElementById("jobsList");
+      container.innerHTML = "";
+
+      if (jobs.length === 0) {
+        container.innerHTML = "<p style='text-align:center;'>No jobs available.</p>";
+        return;
+      }
+
+      jobs.forEach((job) => {
+        const title = job.title || "Job Title Not Specified";
+        const category = job.category || "General";
+        const city = job.city || "Not Specified";
+        const salary = job.salary ? `Rs. ${job.salary}` : "Negotiable";
+        const posterName = job.postedBy || job.name || "Unknown Poster";
+        const phone = job.phone || job.contact || job.cellNo || "";
+        const description = job.description || "";
+
+        const card = document.createElement("div");
+        card.className = "job-card";
+        card.innerHTML = `
+          <div class="job-title">${title}</div>
+          <div class="job-meta">
+            <span class="badge">📂 ${category}</span>
+            <span class="badge">📍 ${city}</span>
+            <span class="badge badge-salary">💰 ${salary}</span>
+          </div>
+          ${description ? `<p style="font-size:14px; color:#4a5568; margin-bottom:10px;">${description}</p>` : ''}
+          
+          <div class="job-poster-info">
+            <div><strong>Posted By:</strong> ${posterName}</div>
+            ${phone ? `<div><strong>Cell No:</strong> ${phone}</div>` : ''}
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn-action btn-apply" onclick="openApplyModal('${job.id}', '${title.replace(/'/g, "\\'")}')">📝 Apply Now</button>
+            ${phone ? `
+              <div class="contact-row">
+                <a href="tel:${phone}" class="btn-action btn-phone">📞 Call</a>
+                <a href="https://wa.me/${phone.replace(/[^0-9]/g, '')}" target="_blank" class="btn-action btn-call">💬 WhatsApp</a>
+              </div>
+            ` : ''}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Modal Controls
+    const applyModal = document.getElementById("applyModal");
+    const modalJobTitle = document.getElementById("modalJobTitle");
+    const modalJobId = document.getElementById("modalJobId");
+    const applyForm = document.getElementById("applyForm");
+    const btnCloseModal = document.getElementById("btnCloseModal");
+
+    window.openApplyModal = (jobId, title) => {
+      modalJobId.value = jobId;
+      modalJobTitle.innerText = `Apply: ${title}`;
+      applyModal.style.display = "flex";
+    };
+
+    btnCloseModal.addEventListener("click", () => {
+      applyModal.style.display = "none";
+      applyForm.reset();
+    });
+
+    // Form Submit Handler
+    applyForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = applyForm.querySelector(".btn-submit");
+      submitBtn.innerText = "Submitting...";
+      submitBtn.disabled = true;
+
+      const jobId = modalJobId.value;
+      const name = document.getElementById("applicantName").value;
+      const phone = document.getElementById("applicantPhone").value;
+      const notes = document.getElementById("applicantNotes").value;
+
+      try {
+        await addDoc(collection(db, "job_applications"), {
+          jobId: jobId || "",
+          applicantName: name,
+          applicantPhone: phone,
+          notes: notes,
+          appliedAt: new Date().toISOString()
+        });
+
+        alert("Aap ki application kamyabi se submit ho gayi hai!");
+        applyModal.style.display = "none";
+        applyForm.reset();
+      } catch (err) {
+        console.error("Firestore Error Detailed:", err);
+        alert("Error: " + (err.message || "Application submit nahi ho saki. Firebase Rules check karein."));
+      } finally {
+        submitBtn.innerText = "Submit Application";
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Live Search Filters
+    const categoryInput = document.getElementById("categoryInput");
+    const cityInput = document.getElementById("cityInput");
+
+    function filterJobs() {
+      const catVal = categoryInput.value.toLowerCase();
+      const cityVal = cityInput.value.toLowerCase();
+
+      const filtered = allJobs.filter((job) => {
+        const matchesCat = (job.category || "").toLowerCase().includes(catVal) || (job.title || "").toLowerCase().includes(catVal);
+        const matchesCity = (job.city || "").toLowerCase().includes(cityVal);
+        return matchesCat && matchesCity;
+      });
+
+      renderJobs(filtered);
+    }
+
+    categoryInput.addEventListener("input", filterJobs);
+    cityInput.addEventListener("input", filterJobs);
+
+    // Load initial jobs data
+    fetchJobs();
+  </script>
 </body>
 </html>

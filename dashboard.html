@@ -3,335 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Find Skilled Workers - Rozgar PK</title>
-
-<meta name="description"
-content="Find verified Tile Mason, Electrician, Plumber, Carpenter and skilled workers near you.">
-
-<meta name="keywords"
-content="Tile Mason Near Me, Electrician Near Me, Plumber Near Me, Carpenter Near Me, Pakistan Workers">
-
-<meta name="robots"
-content="index,follow">
+<meta name="description" content="Find verified Tile Mason, Electrician, Plumber, Carpenter and skilled workers near you.">
+<meta name="keywords" content="Tile Mason Near Me, Electrician Near Me, Plumber Near Me, Carpenter Near Me, Pakistan Workers">
+<meta name="robots" content="index,follow">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
-
-body{
-background:#F8FAFC;
-padding:15px;
-color:#1E293B;
+body {
+    background: #F8FAFC;
+    padding: 15px;
+    color: #1E293B;
 }
-
-.header{
-background:#1E3A5F;
-color:white;
-padding:20px;
-border-radius:18px;
-text-align:center;
-margin-bottom:15px;
-position:relative;
+.header {
+    background: #1E3A5F;
+    color: white;
+    padding: 20px;
+    border-radius: 18px;
+    text-align: center;
+    margin-bottom: 15px;
 }
-
-.header h1{
-font-size:30px;
-margin-bottom:5px;
+.header h1 {
+    font-size: 30px;
+    margin-bottom: 5px;
 }
-
-.header p{
-opacity:.9;
+.header p {
+    opacity: .9;
 }
-
-.top-buttons{
-display:flex;
-gap:10px;
-margin-bottom:15px;
+.top-actions {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
 }
-
-.floating-logout{
-position:fixed;
-bottom:20px;
-right:20px;
-
-width:55px;
-height:55px;
-
-border:none;
-border-radius:50%;
-
-background:#DC2626;
-color:#fff;
-
-font-size:22px;
-cursor:pointer;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-box-shadow:0 4px 12px rgba(0,0,0,.25);
-
-z-index:9999;
+.home-btn, .jobs-btn, .profile-btn, .post-btn {
+    flex: 1;
+    min-width: 100px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    transition: .3s;
 }
-.search-box{
-background:white;
-padding:15px;
-border-radius:15px;
-margin-bottom:15px;
-border:1px solid #E2E8F0;
-}
+.home-btn { background: #1E3A5F; }
+.jobs-btn { background: #2563EB; }
+.profile-btn { background: #8B5CF6; }
+.post-btn { background: #22C55E; }
 
-.search-box input{
-width:100%;
-padding:12px;
-margin-bottom:10px;
-border:1px solid #CBD5E1;
-border-radius:10px;
+.home-btn:hover, .jobs-btn:hover, .profile-btn:hover, .post-btn:hover {
+    opacity: .9;
+    transform: translateY(-2px);
 }
-
-.count-box{
-background:white;
-padding:12px;
-border-radius:12px;
-margin-bottom:15px;
-font-weight:bold;
-text-align:center;
+.search-box {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #E2E8F0;
 }
-
-.worker-card{
-background:white;
-padding:18px;
-border-radius:20px;
-margin-bottom:18px;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
+.search-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #CBD5E1;
+    border-radius: 10px;
+    font-size: 15px;
 }
-
-.worker-image{
-width:100px;
-height:100px;
-border-radius:50%;
-object-fit:cover;
-display:block;
-margin:0 auto 10px;
-border:3px solid #1E3A5F;
+.count-box {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
 }
-
-.worker-placeholder{
-width:100px;
-height:100px;
-border-radius:50%;
-background:#E2E8F0;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:40px;
-margin:0 auto 10px;
+.worker-card {
+    background: white;
+    padding: 18px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
 }
-
-.worker-name{
-text-align:center;
-margin-bottom:5px;
-color:#1E3A5F;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-wrap: wrap;
-gap: 5px;
+.worker-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 10px;
+    border: 3px solid #1E3A5F;
 }
-
+.worker-placeholder {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    margin: 0 auto 10px;
+}
+.worker-name {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #1E3A5F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
 .rating-badge {
-text-align: center;
-font-size: 14px;
-color: #F59E0B;
-font-weight: bold;
-margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #F59E0B;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
-
-.worker-card p{
-margin:8px 0;
-font-size:15px;
+.worker-card p {
+    margin: 8px 0;
+    font-size: 15px;
 }
-
-.status{
-color:green;
-font-weight:bold;
+.status {
+    color: green;
+    font-weight: bold;
 }
-
-.top-actions{
-display:flex;
-gap:8px;
-margin-bottom:15px;
-flex-wrap:wrap;
+.btn-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
 }
-
-.jobs-btn,
-.post-btn,
-.profile-btn{
-flex:1;
-min-width:120px;
-height:55px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-border-radius:12px;
-text-decoration:none;
-
-font-size:14px;
-font-weight:600;
-color:white;
-
-transition:.3s;
+.call-btn, .hire-btn, .rate-btn, .edit-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+.call-btn { background: #2563EB; }
+.hire-btn { background: #22C55E; }
+.rate-btn { background: #F59E0B; }
+.edit-btn { background: #8B5CF6; }
 
-.jobs-btn{
-background:#2563EB;
+.floating-logout {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: #DC2626;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+    z-index: 9999;
 }
-
-.profile-btn{
-background:#8B5CF6;
-}
-
-.post-btn{
-background:#22C55E;
-}
-
-.jobs-btn:hover,
-.profile-btn:hover,
-.post-btn:hover{
-opacity:.9;
-transform:translateY(-2px);
-}
-.home-btn{
-flex:1;
-min-width:120px;
-height:55px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-border-radius:12px;
-text-decoration:none;
-
-font-size:14px;
-font-weight:600;
-color:white;
-
-background:#1E3A5F;
-
-transition:.3s;
-}
-
-.home-btn:hover{
-opacity:.9;
-transform:translateY(-2px);
-}
-
-.loading,
-.no-worker{
-text-align:center;
-padding:20px;
-}
-.top-actions{
-display:flex;
-gap:10px;
-margin-bottom:15px;
-}
-
-.jobs-btn,
-.post-btn{
-flex:1;
-padding:12px;
-border-radius:12px;
-text-align:center;
-text-decoration:none;
-font-weight:bold;
-color:white;
-}
-
-.jobs-btn{
-background:#2563EB;
-}
-
-.post-btn{
-background:#22C55E;
-}
-
-.jobs-btn:hover,
-.post-btn:hover{
-opacity:.9;
-transform:translateY(-2px);
-transition:.3s;
+.loading, .no-worker {
+    text-align: center;
+    padding: 30px;
+    color: #64748B;
+    font-weight: bold;
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-<h1>Rozgar PK</h1>
-<p>Find Skilled Workers Near You</p>
+    <h1>Rozgar PK</h1>
+    <p>Find Skilled Workers Near You</p>
 </div>
+
 <div class="top-actions">
-    <a href="index.html" class="home-btn">
-🏠 Home
-</a>
-
-<a href="jobs.html" class="jobs-btn">
-💼 Browse Jobs
-</a>
-
-<a href="job-applications.html" class="profile-btn">
-📥 Applications
-</a>
-
-<a href="my-jobs.html" class="profile-btn">
-📋 My Jobs
-</a>
-<a href="pricing.html" class="profile-btn">
-💎 Premium
-</a>
-<a href="post-job.html" class="post-btn">
-➕ Post Job
-</a>
-
+    <a href="index.html" class="home-btn">🏠 Home</a>
+    <a href="jobs.html" class="jobs-btn">💼 Jobs</a>
+    <a href="job-applications.html" class="profile-btn">📥 Application</a>
+    <a href="my-jobs.html" class="profile-btn">📋 My Jobs</a>
+    <a href="pricing.html" class="profile-btn">💎 Premium</a>
+    <a href="post-job.html" class="post-btn">➕ Post Job</a>
 </div>
+
 <div class="search-box">
-<input type="text" id="searchSkill" placeholder="Search Skill (Mason, Plumber, Electrician)">
-<input type="text" id="searchCity" placeholder="Search City (Multan, Lahore, Karachi)">
+    <input type="text" id="searchSkill" placeholder="Search Skill (Mason, Plumber, Electrician)">
+    <input type="text" id="searchCity" placeholder="Search City (Multan, Lahore, Karachi)">
 </div>
 
 <div class="count-box">
-Total Workers: <span id="workerCount">0</span>
+    Total Workers Found: <span id="workerCount">0</span>
 </div>
 
 <div id="workersContainer" class="loading">
-Loading Workers...
+    Loading Workers...
 </div>
-<button id="logoutBtn" class="floating-logout">
-🚪
-</button>
+
+<button id="logoutBtn" class="floating-logout">🚪</button>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 
 const firebaseConfig = {
-apiKey: "AIzaSyD13C2N3R6b-lgr7HXipEicQKr7AinbHPA",
-authDomain: "rozgarconnect-69054.firebaseapp.com",
-projectId: "rozgarconnect-69054",
-storageBucket: "rozgarconnect-69054.firebasestorage.app",
-messagingSenderId: "260861416467",
-appId: "1:260861416467:web:0e5ba645c9301a53b79be6",
-measurementId: "G-P9HZ0BM40W"
+    apiKey: "AIzaSyD13C2N3R6b-lgr7HXipEicQKr7AinbHPA",
+    authDomain: "rozgarconnect-69054.firebaseapp.com",
+    projectId: "rozgarconnect-69054",
+    storageBucket: "rozgarconnect-69054.firebasestorage.app",
+    messagingSenderId: "260861416467",
+    appId: "1:260861416467:web:0e5ba645c9301a53b79be6",
+    measurementId: "G-P9HZ0BM40W"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -340,175 +239,180 @@ const auth = getAuth(app);
 
 const workersContainer = document.getElementById("workersContainer");
 const workerCount = document.getElementById("workerCount");
+const skillInput = document.getElementById("searchSkill");
+const cityInput = document.getElementById("searchCity");
 
-// Current Logged-in User tracking state
 let currentLoggedInUID = null;
 
-// Ensure Auth State is fully grabbed before loading cards
+function getURLSearchParam() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('search') || '';
+}
+
 onAuthStateChanged(auth, (user) => {
     if (user) {
         currentLoggedInUID = user.uid;
-        loadWorkers(); // Load only after knowing who is logged in
+        loadWorkers();
     } else {
-        window.location.href = "login.html"; // Safe redirect if unauthorized
+        window.location.href = "login.html";
     }
 });
 
 async function loadWorkers(){
-try{
-const querySnapshot = await getDocs(collection(db,"users"));
-workersContainer.innerHTML = "";
-let totalWorkers = 0;
+    try {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        workersContainer.innerHTML = "";
+        let totalWorkers = 0;
 
-querySnapshot.forEach((docRef)=>{
-const worker = docRef.data();
-const workerId = docRef.id; 
+        querySnapshot.forEach((docRef) => {
+            const worker = docRef.data();
+            const workerId = docRef.id; 
 
-if(worker.role === "worker"){
-totalWorkers++;
+            // Flexible role checking (Handles 'worker', 'Worker', or users with skills)
+            const roleStr = (worker.role || "").toLowerCase().trim();
+            const hasSkill = worker.skill && worker.skill.trim() !== "";
 
-const whatsappText = encodeURIComponent("Assalam o Alaikum, mujhe aap ki service chahiye.");
+            if (roleStr === "worker" || roleStr === "technician" || hasSkill) {
+                totalWorkers++;
+                const whatsappText = encodeURIComponent("Assalam o Alaikum, mujhe aap ki service chahiye.");
+                const displayRating = worker.rating ? Number(worker.rating).toFixed(1) : "New";
+                const totalReviews = worker.reviewCount || 0;
+                const totalStars = worker.totalStars || 0;
+                
+                const verificationBadge = worker.isVerified 
+                    ? `<span style="background: #DCFCE7; color: #15803D; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: bold;">✅ Verified</span>` 
+                    : `<span style="background: #F1F5F9; color: #64748B; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: bold;">⏳ Pending</span>`;
 
-const displayRating = worker.rating ? Number(worker.rating).toFixed(1) : "New";
-const totalReviews = worker.reviewCount || 0;
-const totalStars = worker.totalStars || 0;
+                let actionButtonHTML = "";
+                if (currentLoggedInUID && workerId === currentLoggedInUID) {
+                    actionButtonHTML = `<a class="edit-btn" href="profile.html">⚙️ Edit Profile</a>`;
+                } else {
+                    actionButtonHTML = `<button class="rate-btn" onclick="rateWorker('${workerId}', ${totalStars}, ${totalReviews})">⭐ Rate</button>`;
+                }
 
-const verificationBadge = worker.isVerified 
-    ? `<span style="background: #DCFCE7; color: #15803D; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: bold;">✅ Verified</span>` 
-    : `<span style="background: #F1F5F9; color: #64748B; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: bold;">⏳ Pending</span>`;
+                workersContainer.innerHTML += `
+                    <div class="worker-card">
+                        ${worker.imageUrl && worker.imageUrl.trim() !== ""
+                            ? `<img class="worker-image" src="${worker.imageUrl}" onerror="this.style.display='none'">`
+                            : `<div class="worker-placeholder">👤</div>`
+                        }
+                        <h2 class="worker-name">${worker.name || "Worker"} ${verificationBadge}</h2>
+                        <div class="rating-badge">⭐ ${displayRating} (${totalReviews} reviews)</div>
 
-// DYNAMIC ACTION BUTTON LOGIC
-// Agar card usi user ka hai jo login hai, to Edit button dikhao, warna Rate button
-let actionButtonHTML = "";
-if (workerId === currentLoggedInUID) {
-    actionButtonHTML = `<a class="edit-btn" href="profile.html">⚙️ Edit Profile</a>`;
-} else {
-    actionButtonHTML = `<button class="rate-btn" onclick="rateWorker('${workerId}', ${totalStars}, ${totalReviews})">⭐ Rate</button>`;
-}
+                        <p><b>🛠 Skill:</b> ${worker.skill || "Not Added"}</p>
+                        <p><b>📍 City:</b> ${worker.city || "Not Added"}</p>
+                        <p><b>💰 Daily Wage:</b> Rs. ${worker.wage || "0"}</p>
+                        <p><b>⭐ Experience:</b> ${worker.experience || "Not Added"}</p>
+                        <p><b>📞 Mobile:</b> ${worker.mobile || "N/A"}</p>
+                        <p><b>🟢 Status:</b> <span class="status">${worker.availability || "Available"}</span></p>
 
-workersContainer.innerHTML += `
-<div class="worker-card">
-${
-worker.imageUrl && worker.imageUrl.trim() !== ""
-? `<img class="worker-image" src="${worker.imageUrl}" onerror="this.style.display='none'">`
-: `<div class="worker-placeholder">👤</div>`
-}
+                        <div class="btn-group">
+                            <a class="call-btn" href="tel:${worker.mobile}">📞 Call</a>
+                            <a class="hire-btn" href="https://wa.me/${worker.whatsapp || worker.mobile}?text=${whatsappText}" target="_blank">🟢 Hire</a>
+                            ${actionButtonHTML}
+                        </div>
+                    </div>
+                `;
+            }
+        });
 
-<h2 class="worker-name">${worker.name || "Worker"} ${verificationBadge}</h2>
-<div class="rating-badge">⭐ ${displayRating} (${totalReviews} reviews)</div>
+        if(totalWorkers === 0){
+            workersContainer.innerHTML = '<div class="no-worker"><h3>No Workers Registered Yet</h3></div>';
+        }
 
-<p><b>🛠 Skill:</b> ${worker.skill || "Not Added"}</p>
-<p><b>📍 City:</b> ${worker.city || "Not Added"}</p>
-<p><b>💰 Daily Wage:</b> Rs. ${worker.wage || "0"}</p>
-<p><b>⭐ Experience:</b> ${worker.experience || "Not Added"}</p>
-<p><b>📞 Mobile:</b> ${worker.mobile || ""}</p>
-<p><b>🟢 Status:</b> <span class="status">${worker.availability || "Available"}</span></p>
+        setupSearch();
 
-<div class="btn-group">
-<a class="call-btn" href="tel:${worker.mobile}">📞 Call</a>
-<a class="hire-btn" href="https://wa.me/${worker.whatsapp || worker.mobile}?text=${whatsappText}" target="_blank">🟢 Hire</a>
-${actionButtonHTML}
-</div>
-</div>
-`;
-}
-});
-
-workerCount.innerText = totalWorkers;
-
-if(totalWorkers === 0){
-workersContainer.innerHTML = '<div class="no-worker"><h3>No Workers Registered Yet</h3></div>';
-}
-
-setupSearch();
-}catch(error){
-console.error(error);
-workersContainer.innerHTML = '<div class="no-worker"><h3>Error Loading Workers</h3></div>';
-}
+    } catch(error) {
+        console.error("Firestore Loading Error:", error);
+        workersContainer.innerHTML = `<div class="no-worker"><h3 style="color:red;">Error Loading Workers</h3><p style="font-size:12px;">${error.message}</p></div>`;
+    }
 }
 
 function setupSearch(){
-const skillInput = document.getElementById("searchSkill");
-const cityInput = document.getElementById("searchCity");
+    const urlQuery = getURLSearchParam();
+    if (urlQuery && !skillInput.value) {
+        skillInput.value = urlQuery;
+    }
 
-function filterWorkers(){
-const skill = skillInput.value.toLowerCase();
-const city = cityInput.value.toLowerCase();
-const cards = document.querySelectorAll(".worker-card");
+    function filterWorkers(){
+        const skill = skillInput.value.toLowerCase().trim();
+        const city = cityInput.value.toLowerCase().trim();
+        const cards = document.querySelectorAll(".worker-card");
+        let visibleCount = 0;
 
-cards.forEach(card=>{
-const text = card.innerText.toLowerCase();
-card.style.display = text.includes(skill) && text.includes(city) ? "block" : "none";
-});
+        cards.forEach(card => {
+            const text = card.innerText.toLowerCase();
+            
+            const matchesSkill = skill === "" || text.includes(skill) || 
+               (skill.includes("mason") && (text.includes("tile") || text.includes("mason"))) ||
+               (skill.includes("electric") && text.includes("electric")) ||
+               (skill.includes("ac") && (text.includes("ac") || text.includes("technician")));
+
+            const matchesCity = city === "" || text.includes(city);
+
+            if (matchesSkill && matchesCity) {
+                card.style.display = "block";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        workerCount.innerText = visibleCount;
+    }
+
+    skillInput.addEventListener("input", filterWorkers);
+    cityInput.addEventListener("input", filterWorkers);
+
+    filterWorkers();
 }
 
-skillInput.addEventListener("input", filterWorkers);
-cityInput.addEventListener("input", filterWorkers);
-}
-
-document.getElementById("logoutBtn").addEventListener("click", async()=>{
-await signOut(auth);
-window.location.href = "login.html";
+document.getElementById("logoutBtn").addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.href = "login.html";
 });
 
 window.rateWorker = async function(workerId, currentTotalStars, currentReviewCount){
-if (!workerId || workerId === "undefined" || workerId === "null") {
-alert("Error: Worker identifier is invalid or missing.");
-return;
-}
+    if (!workerId || workerId === "undefined" || workerId === "null") {
+        alert("Error: Worker identifier is invalid or missing.");
+        return;
+    }
 
-// Extra backend safety check (just in case)
-if (workerId === currentLoggedInUID) {
-    alert("You cannot rate your own profile!");
-    return;
-}
+    if (workerId === currentLoggedInUID) {
+        alert("You cannot rate your own profile!");
+        return;
+    }
 
-const input = prompt("Rate this worker (Enter number from 1 to 5):");
-if (!input) return; 
-const stars = parseInt(input);
+    const input = prompt("Rate this worker (Enter number from 1 to 5):");
+    if (!input) return; 
+    const stars = parseInt(input);
 
-if(isNaN(stars) || stars < 1 || stars > 5) {
-alert("Please enter a valid rating between 1 and 5.");
-return;
-}
+    if(isNaN(stars) || stars < 1 || stars > 5) {
+        alert("Please enter a valid rating between 1 and 5.");
+        return;
+    }
 
-try {
-const workerRef = doc(db, "users", workerId);
+    try {
+        const workerRef = doc(db, "users", workerId);
+        const newTotalStars = Number(currentTotalStars) + stars;
+        const newReviewCount = Number(currentReviewCount) + 1;
+        const newAverageRating = newTotalStars / newReviewCount;
 
-const newTotalStars = Number(currentTotalStars) + stars;
-const newReviewCount = Number(currentReviewCount) + 1;
-const newAverageRating = newTotalStars / newReviewCount;
+        await updateDoc(workerRef, {
+            totalStars: increment(stars),
+            reviewCount: increment(1),
+            rating: newAverageRating
+        });
 
-await updateDoc(workerRef, {
-totalStars: increment(stars),
-reviewCount: increment(1),
-rating: newAverageRating
-});
+        alert("Thank you! Rating saved successfully.");
+        loadWorkers(); 
 
-alert("Thank you! Rating saved successfully.");
-loadWorkers(); 
-
-} catch (error) {
-console.error("Database update failed:", error);
-alert("Network sync failed. Please try again.");
-}
-}
+    } catch (error) {
+        console.error("Database update failed:", error);
+        alert("Network sync failed. Please try again.");
+    }
+};
 </script>
-<div style="display:none;">
 
-<h2>Find Skilled Workers in Pakistan</h2>
-
-<p>
-Rozgar PK helps users find Tile Mason, Electrician,
-Plumber, Painter, Carpenter and other skilled workers
-across Pakistan.
-</p>
-
-<p>
-Workers are available in Multan, Lahore, Karachi,
-Islamabad, Faisalabad, Khanewal and other cities.
-</p>
-
-</div>
 </body>
 </html>
