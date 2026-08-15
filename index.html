@@ -194,6 +194,79 @@
             line-height: 1.7;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         }
+        
+        /* Founder & Business Contact Styling */
+        .founder-card {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .founder-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2563EB;
+            margin: auto;
+        }
+        .founder-info {
+            flex: 1;
+            min-width: 250px;
+        }
+        .founder-info h3 {
+            font-size: 20px;
+            color: #1E3A5F;
+            margin-bottom: 4px;
+        }
+        .founder-info .role {
+            color: #2563EB;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .founder-info p {
+            line-height: 1.6;
+            color: #475569;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .business-contact {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #E2E8F0;
+        }
+        .business-contact h4 {
+            font-size: 14px;
+            color: #1E3A5F;
+            margin-bottom: 10px;
+        }
+        .contact-btns {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .c-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.3s;
+        }
+        .c-btn:hover { opacity: 0.9; }
+        .call-btn { background: #2563EB; }
+        .wa-btn { background: #22C55E; }
+
         .footer {
             margin-top: 30px;
             background: #1E3A5F;
@@ -218,6 +291,8 @@
             .hero h1 { font-size: 28px; }
             .skills { grid-template-columns: 1fr; }
             .stats { grid-template-columns: 1fr; }
+            .founder-card { text-align: center; }
+            .contact-btns { justify-content: center; }
         }
     </style>
 </head>
@@ -306,6 +381,27 @@
         <div class="how-card">
             <h3>3. Contact Directly</h3>
             <p>Call or WhatsApp instantly to discuss project requirements.</p>
+        </div>
+    </div>
+
+    <!-- Founder Section -->
+    <div class="section">
+        <h2 class="section-title">Meet The Founder</h2>
+        <div class="founder-card">
+            <img src="founder.jpg" alt="Muhammad Ramzan Siddique Sial" class="founder-img">
+            <div class="founder-info">
+                <h3>Muhammad Ramzan Siddique 𝐒𝐢𝐚𝐥</h3>
+                <div class="role">Founder & CEO, Rozgar PK</div>
+                <p>"Humara maqsad Pakistan ke har hunar-mand worker ko direct rozgar dilona hai bina kisi commission ke, taake har karigar izzat aur asani ke sath kama sakay."</p>
+                
+                <div class="business-contact">
+                    <h4>💼 For Business Inquiries Contact Me:</h4>
+                    <div class="contact-btns">
+                        <a href="tel:+923248116406" class="c-btn call-btn">📞 Call Now</a>
+                        <a href="https://wa.me/923248116406?text=Hello%20Muhammad%20Ramzan%20Siddique,%20I%20have%20a%20business%20inquiry%20regarding%20Rozgar%20PK." class="c-btn wa-btn" target="_blank">💬 WhatsApp</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

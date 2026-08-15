@@ -6,55 +6,168 @@
 <title>Rozgar Connect Login</title>
 
 <style>
-body{
-font-family:Arial,sans-serif;
-background:#f4f4f4;
-padding:20px;
-}
-.container{
-max-width:400px;
-margin:auto;
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,.1);
-}
-h2{
-text-align:center;
-color:#0d6efd;
-}
-input{
-width:100%;
-padding:10px;
-margin:8px 0;
-box-sizing:border-box;
-}
-button{
-width:100%;
-background:#0d6efd;
-color:white;
-border:none;
-padding:12px;
-border-radius:5px;
-font-size:16px;
-cursor:pointer;
-.register-btn{
-display:block;
-width:100%;
-text-align:center;
-margin-top:10px;
-padding:12px;
-background:#1E3A5F;
-color:white;
-text-decoration:none;
-border-radius:8px;
-font-weight:bold;
-transition:.3s;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.register-btn:hover{
-opacity:.9;
+body {
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden;
+  position: relative;
 }
+
+/* Background Animated Glowing Circles */
+body::before, body::after {
+  content: '';
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: 0;
+  animation: floatBG 6s ease-in-out infinite alternate;
+}
+body::before {
+  background: #0d6efd;
+  top: 10%;
+  left: 15%;
+}
+body::after {
+  background: #22c55e;
+  bottom: 10%;
+  right: 15%;
+  animation-delay: -3s;
+}
+
+@keyframes floatBG {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-30px) scale(1.1); }
+}
+
+/* Main Container Entrance Animation */
+.container {
+  width: 100%;
+  max-width: 380px;
+  background: rgba(22, 27, 34, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 35px 25px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  animation: containerAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes containerAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+h2 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(13, 17, 23, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 12px rgba(13, 110, 253, 0.4);
+  background: rgba(13, 17, 23, 0.9);
+}
+
+.remember-box {
+  display: flex;
+  align-items: center;
+  margin: 12px 0 20px 0;
+  color: #8b949e;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.remember-box input {
+  width: 16px;
+  height: 16px;
+  accent-color: #0d6efd;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+button {
+  width: 100%;
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(13, 110, 253, 0.5);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.register-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+  padding: 12px;
+  background: transparent;
+  color: #8b949e;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
 }
 </style>
 </head>
@@ -62,24 +175,25 @@ opacity:.9;
 
 <div class="container">
 
-<h2>Rozgar Connect Login</h2>
+  <h2>Rozgar Connect</h2>
 
-<input type="email" id="email" placeholder="Email Address">
+  <div class="input-group">
+    <input type="email" id="email" placeholder="Email Address" required>
+  </div>
 
-<input type="password" id="password" placeholder="Password">
-<div style="margin:10px 0;">
-  <input
-    type="checkbox"
-    id="rememberMe"
-    style="width:auto;margin-right:8px;"
-  >
-  <label for="rememberMe">Remember Me</label>
-</div>
-<button id="loginBtn">Login</button>
+  <div class="input-group">
+    <input type="password" id="password" placeholder="Password" required>
+  </div>
 
-<a href="register.html" class="register-btn">
-Create New Account
-</a>
+  <div class="remember-box">
+    <input type="checkbox" id="rememberMe">
+    <label for="rememberMe">Remember Me</label>
+  </div>
+
+  <button id="loginBtn">Login</button>
+
+  <a href="register.html" class="register-btn">Create New Account</a>
+
 </div>
 
 <script type="module" src="login.js"></script>

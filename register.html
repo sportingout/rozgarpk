@@ -4,81 +4,176 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rozgar PK - Create Account</title>
+
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-body{
-background:#F8FAFC;
-padding:20px;
-display:flex;
-justify-content:center;
-align-items:center;
-min-height:100vh;
-}
-.register-container{
-background:white;
-padding:25px;
-border-radius:20px;
-width:100%;
-max-width:400px;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
-}
-h2{
-color:#1E3A5F;
-text-align:center;
-margin-bottom:20px;
-}
-.form-group{
-margin-bottom:15px;
-}
-label{
-display:block;
-margin-bottom:5px;
-font-weight:bold;
-font-size:14px;
-color:#475569;
-}
-input, select{
-width:100%;
-padding:12px;
-border:1px solid #CBD5E1;
-border-radius:10px;
-font-size:15px;
-background: white;
-}
-.submit-btn{
-width:100%;
-padding:14px;
-background:#1E3A5F;
-color:white;
-border:none;
-border-radius:10px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
-}
-.login-link{
-text-align:center;
-margin-top:15px;
-font-size:14px;
-}
-.login-link a{
-color:#22C55E;
-text-decoration:none;
-font-weight:bold;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Stable visible/invisible classes */
+body {
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background Animated Glowing Circles */
+body::before, body::after {
+  content: '';
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: 0;
+  animation: floatBG 6s ease-in-out infinite alternate;
+}
+body::before {
+  background: #f59e0b;
+  top: 5%;
+  right: 10%;
+}
+body::after {
+  background: #0d6efd;
+  bottom: 5%;
+  left: 10%;
+  animation-delay: -3s;
+}
+
+@keyframes floatBG {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-30px) scale(1.1); }
+}
+
+/* Main Container Entrance Animation */
+.register-container {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(22, 27, 34, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 35px 25px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  animation: containerAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes containerAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+h2 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #8b949e;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(13, 17, 23, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+select option {
+  background: #161b22;
+  color: #fff;
+}
+
+input:focus, select:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+  background: rgba(13, 17, 23, 0.9);
+}
+
+.submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.5);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #8b949e;
+}
+
+.login-link a {
+  color: #22C55E;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Dynamic Hidden/Visible Toggle Classes */
 .hidden-fields {
-    display: none !important;
+  display: none !important;
 }
 .visible-fields {
-    display: block !important;
+  display: block !important;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
