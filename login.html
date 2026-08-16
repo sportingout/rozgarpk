@@ -3,77 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rozgar Connect Login</title>
+<title>Rozgar PK - Login</title>
+
+<!-- Google tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQN19GD8DR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HQN19GD8DR');
+</script>
 
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  background: #0f172a;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  overflow: hidden;
   position: relative;
+  overflow-x: hidden;
 }
 
-/* Background Animated Glowing Circles */
-body::before, body::after {
-  content: '';
+/* Background Glowing Bubbles Animation */
+.bg-bubble-1, .bg-bubble-2 {
   position: absolute;
-  width: 250px;
-  height: 250px;
   border-radius: 50%;
-  filter: blur(90px);
+  filter: blur(60px);
   z-index: 0;
-  animation: floatBG 6s ease-in-out infinite alternate;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
 }
-body::before {
-  background: #0d6efd;
-  top: 10%;
-  left: 15%;
+
+.bg-bubble-1 {
+  width: 200px;
+  height: 200px;
+  background: #2563eb;
+  top: 15%;
+  left: 10%;
 }
-body::after {
+
+.bg-bubble-2 {
+  width: 220px;
+  height: 220px;
   background: #22c55e;
-  bottom: 10%;
-  right: 15%;
-  animation-delay: -3s;
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 2s;
 }
 
-@keyframes floatBG {
-  0% { transform: translateY(0px) scale(1); }
-  100% { transform: translateY(-30px) scale(1.1); }
+@keyframes pulseGlow {
+  0% { transform: scale(1) translateY(0); opacity: 0.6; }
+  100% { transform: scale(1.2) translateY(-20px); opacity: 0.9; }
 }
 
-/* Main Container Entrance Animation */
-.container {
+/* Card Entrance Animation */
+.login-container {
   width: 100%;
-  max-width: 380px;
-  background: rgba(22, 27, 34, 0.85);
-  backdrop-filter: blur(12px);
-  padding: 35px 25px;
+  max-width: 400px;
+  background: #1e293b;
+  padding: 30px 25px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  border: 1px solid #334155;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   z-index: 1;
-  animation: containerAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes containerAppear {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  100% {
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
     opacity: 1;
-    transform: translateY(0) scale(1);
   }
 }
 
@@ -81,20 +91,26 @@ h2 {
   text-align: center;
   color: #ffffff;
   font-size: 24px;
-  margin-bottom: 25px;
-  letter-spacing: 0.5px;
+  margin-bottom: 20px;
 }
 
-.input-group {
-  position: relative;
-  margin-bottom: 18px;
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #94a3b8;
 }
 
 input[type="email"], input[type="password"] {
   width: 100%;
-  padding: 12px 15px;
-  background: rgba(13, 17, 23, 0.7);
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  padding: 12px;
+  background: #0f172a;
+  border: 1.5px solid #334155;
   border-radius: 8px;
   color: #fff;
   font-size: 14px;
@@ -102,17 +118,16 @@ input[type="email"], input[type="password"] {
   transition: all 0.3s ease;
 }
 
-input[type="email"]:focus, input[type="password"]:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 12px rgba(13, 110, 253, 0.4);
-  background: rgba(13, 17, 23, 0.9);
+input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
 }
 
 .remember-box {
   display: flex;
   align-items: center;
-  margin: 12px 0 20px 0;
-  color: #8b949e;
+  margin: 10px 0 18px 0;
+  color: #94a3b8;
   font-size: 13px;
   cursor: pointer;
 }
@@ -120,14 +135,14 @@ input[type="email"]:focus, input[type="password"]:focus {
 .remember-box input {
   width: 16px;
   height: 16px;
-  accent-color: #0d6efd;
+  accent-color: #2563eb;
   margin-right: 8px;
   cursor: pointer;
 }
 
-button {
+.submit-btn {
   width: 100%;
-  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+  background: #2563eb;
   color: white;
   border: none;
   padding: 12px;
@@ -135,54 +150,53 @@ button {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+  transition: all 0.2s ease;
 }
 
-button:hover {
+.submit-btn:hover {
+  background: #1d4ed8;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(13, 110, 253, 0.5);
 }
 
-button:active {
+.submit-btn:active {
   transform: translateY(0);
 }
 
-.register-btn {
-  display: block;
-  width: 100%;
+.register-link {
   text-align: center;
-  margin-top: 12px;
-  padding: 12px;
-  background: transparent;
-  color: #8b949e;
-  text-decoration: none;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 18px;
   font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  color: #94a3b8;
 }
 
-.register-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.25);
+.register-link a {
+  color: #22c55e;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
 }
 </style>
 </head>
 <body>
 
-<div class="container">
+<div class="bg-bubble-1"></div>
+<div class="bg-bubble-2"></div>
 
-  <h2>Rozgar Connect</h2>
+<div class="login-container">
+<h2>Rozgar PK Login</h2>
 
-  <div class="input-group">
-    <input type="email" id="email" placeholder="Email Address" required>
+<form id="loginForm">
+  <div class="form-group">
+    <label>Email Address</label>
+    <input type="email" id="email" placeholder="e.g., ali@email.com" required>
   </div>
 
-  <div class="input-group">
-    <input type="password" id="password" placeholder="Password" required>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter Password" required>
   </div>
 
   <div class="remember-box">
@@ -190,13 +204,54 @@ button:active {
     <label for="rememberMe">Remember Me</label>
   </div>
 
-  <button id="loginBtn">Login</button>
+  <button type="submit" id="loginBtn" class="submit-btn">Login</button>
+</form>
 
-  <a href="register.html" class="register-btn">Create New Account</a>
-
+<div class="register-link">
+  Don't have an account? <a href="register.html">Create New Account</a>
+</div>
 </div>
 
-<script type="module" src="login.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD13C2N3R6b-lgr7HXipEicQKr7AinbHPA",
+  authDomain: "rozgarconnect-69054.firebaseapp.com",
+  projectId: "rozgarconnect-69054",
+  storageBucket: "rozgarconnect-69054.firebasestorage.app",
+  messagingSenderId: "260861416467",
+  appId: "1:260861416467:web:0e5ba645c9301a53b79be6",
+  measurementId: "G-HQN19GD8DR"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const loginBtn = document.getElementById("loginBtn");
+
+  try {
+    loginBtn.innerText = "Logging in...";
+    loginBtn.disabled = true;
+
+    await signInWithEmailAndPassword(auth, email, password);
+    
+    alert("Login Successful!");
+    window.location.href = "dashboard.html";
+  } catch (error) {
+    console.error("Login Error:", error);
+    alert("Error: " + error.message);
+    loginBtn.innerText = "Login";
+    loginBtn.disabled = false;
+  }
+});
+</script>
 
 </body>
 </html>

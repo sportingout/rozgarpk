@@ -5,75 +5,85 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rozgar PK - Create Account</title>
 
+<!-- Google tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HQN19GD8DR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HQN19GD8DR');
+</script>
+
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  background: #0f172a;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  overflow-x: hidden;
   position: relative;
+  overflow-x: hidden;
 }
 
-/* Background Animated Glowing Circles */
-body::before, body::after {
-  content: '';
+/* Background Glowing Bubbles Animation */
+.bg-bubble-1, .bg-bubble-2 {
   position: absolute;
-  width: 280px;
-  height: 280px;
   border-radius: 50%;
-  filter: blur(90px);
+  filter: blur(60px);
   z-index: 0;
-  animation: floatBG 6s ease-in-out infinite alternate;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
 }
-body::before {
-  background: #f59e0b;
-  top: 5%;
-  right: 10%;
-}
-body::after {
-  background: #0d6efd;
-  bottom: 5%;
+
+.bg-bubble-1 {
+  width: 200px;
+  height: 200px;
+  background: #2563eb;
+  top: 10%;
   left: 10%;
-  animation-delay: -3s;
 }
 
-@keyframes floatBG {
-  0% { transform: translateY(0px) scale(1); }
-  100% { transform: translateY(-30px) scale(1.1); }
+.bg-bubble-2 {
+  width: 220px;
+  height: 220px;
+  background: #f59e0b;
+  bottom: 10%;
+  right: 10%;
+  animation-delay: 2s;
 }
 
-/* Main Container Entrance Animation */
+@keyframes pulseGlow {
+  0% { transform: scale(1) translateY(0); opacity: 0.6; }
+  100% { transform: scale(1.2) translateY(-20px); opacity: 0.9; }
+}
+
+/* Card Entrance Animation */
 .register-container {
   width: 100%;
-  max-width: 440px;
-  background: rgba(22, 27, 34, 0.85);
-  backdrop-filter: blur(12px);
-  padding: 35px 25px;
+  max-width: 420px;
+  background: #1e293b;
+  padding: 30px 25px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  border: 1px solid #334155;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   z-index: 1;
-  animation: containerAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes containerAppear {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  100% {
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
     opacity: 1;
-    transform: translateY(0) scale(1);
   }
 }
 
@@ -82,7 +92,6 @@ h2 {
   color: #ffffff;
   font-size: 24px;
   margin-bottom: 20px;
-  letter-spacing: 0.5px;
 }
 
 .form-group {
@@ -92,16 +101,16 @@ h2 {
 label {
   display: block;
   margin-bottom: 6px;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 13px;
-  color: #8b949e;
+  color: #94a3b8;
 }
 
 input, select {
   width: 100%;
-  padding: 12px 15px;
-  background: rgba(13, 17, 23, 0.7);
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  padding: 12px;
+  background: #0f172a;
+  border: 1.5px solid #334155;
   border-radius: 8px;
   color: #fff;
   font-size: 14px;
@@ -110,19 +119,18 @@ input, select {
 }
 
 select option {
-  background: #161b22;
+  background: #1e293b;
   color: #fff;
 }
 
 input:focus, select:focus {
-  border-color: #f59e0b;
-  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
-  background: rgba(13, 17, 23, 0.9);
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
 }
 
 .submit-btn {
   width: 100%;
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: #2563eb;
   color: white;
   border: none;
   padding: 12px;
@@ -131,13 +139,12 @@ input:focus, select:focus {
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+  transition: all 0.2s ease;
 }
 
 .submit-btn:hover {
+  background: #1d4ed8;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.5);
 }
 
 .submit-btn:active {
@@ -146,38 +153,40 @@ input:focus, select:focus {
 
 .login-link {
   text-align: center;
-  margin-top: 18px;
+  margin-top: 15px;
   font-size: 14px;
-  color: #8b949e;
+  color: #94a3b8;
 }
 
 .login-link a {
-  color: #22C55E;
+  color: #22c55e;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s ease;
 }
 
 .login-link a:hover {
   text-decoration: underline;
 }
 
-/* Dynamic Hidden/Visible Toggle Classes */
-.hidden-fields {
-  display: none !important;
-}
-.visible-fields {
-  display: block !important;
-  animation: fadeIn 0.4s ease-in-out;
+/* Worker Fields Smooth Dropdown Animation */
+#workerFields {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+#workerFields.visible-fields {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 10px;
 }
 </style>
 </head>
 <body>
+
+<div class="bg-bubble-1"></div>
+<div class="bg-bubble-2"></div>
 
 <div class="register-container">
 <h2>Create Account</h2>
@@ -186,18 +195,22 @@ input:focus, select:focus {
 <label>Full Name</label>
 <input type="text" id="regName" placeholder="e.g., Ali Khan" required>
 </div>
+
 <div class="form-group">
 <label>Email Address</label>
 <input type="email" id="regEmail" placeholder="e.g., ali@email.com" required>
 </div>
+
 <div class="form-group">
 <label>Password</label>
 <input type="password" id="regPassword" placeholder="Minimum 6 characters" required>
 </div>
+
 <div class="form-group">
 <label>Mobile Number</label>
 <input type="tel" id="regMobile" placeholder="e.g., 03216543210" required>
 </div>
+
 <div class="form-group">
 <label>City / Area</label>
 <input type="text" id="regCity" placeholder="e.g., Multan Cantt, Lahore" required>
@@ -212,7 +225,8 @@ input:focus, select:focus {
 </select>
 </div>
 
-<div id="workerFields" class="hidden-fields">
+<!-- Animated Smooth Worker Extra Fields -->
+<div id="workerFields">
 <div class="form-group">
 <label>Your Skill</label>
 <input type="text" id="regSkill" placeholder="e.g., Car Mechanic, Plumber, Mason">
@@ -247,7 +261,7 @@ projectId: "rozgarconnect-69054",
 storageBucket: "rozgarconnect-69054.firebasestorage.app",
 messagingSenderId: "260861416467",
 appId: "1:260861416467:web:0e5ba645c9301a53b79be6",
-measurementId: "G-P9HZ0BM40W"
+measurementId: "G-HQN19GD8DR"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -260,20 +274,19 @@ const regSkill = document.getElementById("regSkill");
 const regWage = document.getElementById("regWage");
 const regExperience = document.getElementById("regExperience");
 
-// STABLE TOGGLE HANDLER
+// TOGGLE HANDLER WITH SMOOTH HEIGHT ANIMATION
 roleSelect.addEventListener("change", function() {
     if (this.value === "worker") {
-        workerFields.className = "visible-fields";
+        workerFields.classList.add("visible-fields");
         regSkill.required = true;
         regWage.required = true;
         regExperience.required = true;
     } else {
-        workerFields.className = "hidden-fields";
+        workerFields.classList.remove("visible-fields");
         regSkill.required = false;
         regWage.required = false;
         regExperience.required = false;
         
-        // Reset inputs values
         regSkill.value = "";
         regWage.value = "";
         regExperience.value = "";
